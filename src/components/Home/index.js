@@ -9,7 +9,7 @@ const Home = () => {
     return <Redirect to="/login" />
   }
 
-  console.log('ohh')
+  console.log('Updated in github')
 
   return (
     <>
