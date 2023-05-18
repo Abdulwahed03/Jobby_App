@@ -9,6 +9,8 @@ const Home = () => {
     return <Redirect to="/login" />
   }
 
+  console.log('ohh')
+
   return (
     <>
       <Header />
