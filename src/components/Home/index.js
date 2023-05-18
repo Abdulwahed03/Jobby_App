@@ -9,8 +9,6 @@ const Home = () => {
     return <Redirect to="/login" />
   }
 
-  console.log('Updated in github')
-
   return (
     <>
       <Header />
