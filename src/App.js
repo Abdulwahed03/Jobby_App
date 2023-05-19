@@ -1,8 +1,10 @@
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 
 import LoginPage from './components/LoginPage'
 import ProtectedRoute from './components/ProtectedRoute'
+import Jobs from './components/Jobs'
 import Home from './components/Home'
+import NotFound from './components/NotFound'
 
 import './App.css'
 
@@ -49,6 +51,14 @@ const App = () => (
   <Switch>
     <Route exact path="/login" component={LoginPage} />
     <ProtectedRoute exact path="/" component={Home} />
+    <ProtectedRoute
+      exact
+      path="/jobs"
+      component={Jobs}
+      salaryRangesList={salaryRangesList}
+      employmentTypesList={employmentTypesList}
+    />
+    <Route path="/not-found" component={NotFound} />
   </Switch>
 )
 
