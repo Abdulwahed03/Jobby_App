@@ -1,5 +1,5 @@
-import {AiFillStar} from "react-icons/ai"
-import {MdLocationOn} from "react-icons/md"
+import {AiFillStar} from 'react-icons/ai'
+import {MdLocationOn} from 'react-icons/md'
 import {BsFillBriefcaseFill} from 'react-icons/bs'
 import './index.css'
 
@@ -18,7 +18,7 @@ const JobCard = props => {
 
   return (
     <li>
-      <div className="role-container" >
+      <div className="role-container">
         <img src={companyLogoUrl} alt="company logo" />
         <div>
           <h1> {title} </h1>
@@ -28,23 +28,23 @@ const JobCard = props => {
           </div>
         </div>
       </div>
-      <div className="package-container" >
+      <div className="package-container">
+        <div>
           <div>
-            <div>
-              <MdLocationOn/>
-              <p> {location} </p>
-            </div>
-            <div>
-                <BsFillBriefcaseFill/>
-                <p> {employmentType} </p>
-            </div>
+            <MdLocationOn />
+            <p> {location} </p>
           </div>
-          <h1> {packagePerAnnum} </h1>
+          <div>
+            <BsFillBriefcaseFill />
+            <p> {employmentType} </p>
+          </div>
+        </div>
+        <h1> {packagePerAnnum} </h1>
       </div>
-      <hr>
-      <div className="job-description-container" >
-          <h1> Description </h1>
-          <p> {jobDescription} </p>
+      <hr />
+      <div className="job-description-container">
+        <h1> Description </h1>
+        <p> {jobDescription} </p>
       </div>
     </li>
   )
