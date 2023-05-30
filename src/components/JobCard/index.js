@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import {AiFillStar} from 'react-icons/ai'
 import {MdLocationOn} from 'react-icons/md'
 import {BsFillBriefcaseFill} from 'react-icons/bs'
@@ -17,35 +18,37 @@ const JobCard = props => {
   } = jobsData
 
   return (
-    <li>
-      <div className="role-container">
-        <img src={companyLogoUrl} alt="company logo" />
-        <div>
-          <h1> {title} </h1>
+    <li className="job-card-each">
+      <Link to={`/jobs/${id}`}>
+        <div className="role-container">
+          <img src={companyLogoUrl} alt="company logo" />
           <div>
-            <AiFillStar />
-            <p> {rating} </p>
+            <h1> {title} </h1>
+            <div>
+              <AiFillStar />
+              <p> {rating} </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="package-container">
-        <div>
+        <div className="package-container">
           <div>
-            <MdLocationOn />
-            <p> {location} </p>
+            <div>
+              <MdLocationOn />
+              <p> {location} </p>
+            </div>
+            <div>
+              <BsFillBriefcaseFill />
+              <p> {employmentType} </p>
+            </div>
           </div>
-          <div>
-            <BsFillBriefcaseFill />
-            <p> {employmentType} </p>
-          </div>
+          <h1> {packagePerAnnum} </h1>
         </div>
-        <h1> {packagePerAnnum} </h1>
-      </div>
-      <hr />
-      <div className="job-description-container">
-        <h1> Description </h1>
-        <p> {jobDescription} </p>
-      </div>
+        <hr />
+        <div className="job-description-container">
+          <h1> Description </h1>
+          <p> {jobDescription} </p>
+        </div>
+      </Link>
     </li>
   )
 }

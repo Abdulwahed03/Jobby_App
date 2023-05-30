@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 import {BsSearch} from 'react-icons/bs'
 
 import FilterGroup from '../FilterGroup'
+import Header from '../Header'
 import JobCard from '../JobCard'
 
 import './index.css'
@@ -29,6 +30,7 @@ class Jobs extends Component {
   }
 
   getAllJobs = async () => {
+    console.log('in it')
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
@@ -173,7 +175,7 @@ class Jobs extends Component {
         unpackedList.push(activeEmploymentTypeValue)
         this.setState({activeEmploymentType: unpackedList}, this.getProducts)
       }
-    } else {
+    } else if (checkEl === false) {
       if (activeEmploymentType.includes(activeEmploymentTypeValue)) {
         const ind = activeEmploymentType.indexOf(activeEmploymentTypeValue)
         const unpackedList = [...activeEmploymentType]
@@ -190,22 +192,13 @@ class Jobs extends Component {
   render() {
     const {activeEmploymentType, searchInput, activeSalaryRange} = this.state
     const {employmentTypesList, salaryRangesList} = this.props
+    console.log('rendering')
 
     return (
-      <div className="all-products-section">
-        <FilterGroup
-          searchInput={searchInput}
-          employmentTypesList={employmentTypesList}
-          salaryRangesList={salaryRangesList}
-          changeSearchInput={this.changeSearchInput}
-          enterSearchInput={this.enterSearchInput}
-          activeEmploymentType={activeEmploymentType}
-          activeSalaryRange={activeSalaryRange}
-          changeEmploymentType={this.changeEmploymentType}
-          changeSalaryRange={this.changeSalaryRange}
-        />
-        {this.renderAllJobs()}
-      </div>
+      <>
+        <Header />
+        <div className="all-products-section">{this.renderAllJobs()}</div>
+      </>
     )
   }
 }

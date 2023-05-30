@@ -4,9 +4,13 @@ import Cookies from 'js-cookie'
 
 import './index.css'
 
-class FiltersGroup extends Component {
+class FilterGroup extends Component {
   state = {
     userProfileData: {},
+  }
+
+  componentDidMount = () => {
+    this.renderProfileDetails()
   }
 
   renderSalaryFiltersList = () => {
@@ -15,7 +19,7 @@ class FiltersGroup extends Component {
     return salaryRangesList.map(salary => {
       const {changeSalaryRange} = this.props
 
-      checkedTheSalaryInput = () => {
+      const checkedTheSalaryInput = () => {
         if (salary.salaryRangeId.checked) {
           changeSalaryRange(salary.salaryRangeId)
         }
@@ -25,7 +29,7 @@ class FiltersGroup extends Component {
         <li
           className="salary-type-item"
           key={salary.salaryRangeId}
-          onClick={this.checkedTheSalaryInput}
+          onClick={checkedTheSalaryInput}
         >
           <input type="radio" id={salary.salaryRangeId} />
           <label htmlFor={salary.salaryRangeId}> {salary.label} </label>
@@ -47,8 +51,8 @@ class FiltersGroup extends Component {
     return employmentTypesList.map(employment => {
       const {changeEmploymentType} = this.props
 
-      checkedTheInput = () => {
-        const CheckedEl = false
+      const checkedTheInput = () => {
+        let CheckedEl = false
         if (employment.employmentTypeId.checked) {
           CheckedEl = true
           changeEmploymentType(CheckedEl, employment.employmentTypeId)
@@ -62,7 +66,7 @@ class FiltersGroup extends Component {
         <li
           className="employment-type-item"
           key={employment.employmentTypeId}
-          onClick={this.checkedTheInput}
+          onClick={checkedTheInput}
         >
           <input type="checkbox" id={employment.employmentTypeId} />
           <label htmlFor={employment.employmentTypeId}>
@@ -73,7 +77,7 @@ class FiltersGroup extends Component {
     })
   }
 
-  renderProductCategories = () => (
+  renderEmploymentCategories = () => (
     <>
       <h1 className="category-heading"> Type Of Employment </h1>
       <ul className="categories-list">{this.renderEmployeeList()}</ul>
@@ -126,12 +130,11 @@ class FiltersGroup extends Component {
   render() {
     return (
       <div className="filters-group-container">
-        {this.renderProfileDetails()}
-        {this.renderProductCategories()}
+        {this.renderEmploymentCategories()}
         {this.renderRatingsFilters()}
       </div>
     )
   }
 }
 
-export default FiltersGroup
+export default FilterGroup

@@ -53,6 +53,8 @@
   border: 0px;
   height: 42px;
   width: 100px;
+  outline: none;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
