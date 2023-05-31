@@ -17,7 +17,7 @@ const SimilarJobDetails = props => {
   return (
     <li>
       <div className="Similar-role-container">
-        <img src={companyLogoUrl} alt="job details company logo" />
+        <img src={companyLogoUrl} alt="similar job company logo" />
         <div>
           <h1> {title} </h1>
           <div>

@@ -21,22 +21,26 @@ const JobCard = props => {
     <li className="job-card-each">
       <Link to={`/jobs/${id}`}>
         <div className="role-container">
-          <img src={companyLogoUrl} alt="company logo" />
-          <div>
+          <img
+            src={companyLogoUrl}
+            alt="company logo"
+            className="job-card-logo"
+          />
+          <div className="jobCard-title-container">
             <h1> {title} </h1>
-            <div>
+            <div className="jobCard-star-container">
               <AiFillStar />
               <p> {rating} </p>
             </div>
           </div>
         </div>
         <div className="package-container">
-          <div>
-            <div>
+          <div className="role-container">
+            <div className="role-container">
               <MdLocationOn />
               <p> {location} </p>
             </div>
-            <div>
+            <div className="role-container">
               <BsFillBriefcaseFill />
               <p> {employmentType} </p>
             </div>

@@ -8,6 +8,8 @@ import {BsFillBriefcaseFill} from 'react-icons/bs'
 import Header from '../Header'
 import SimilarJobDetails from '../SimilarJobDetails'
 
+import './index.css'
+
 const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
@@ -59,6 +61,7 @@ class JobItemDetails extends Component {
     const {match} = this.props
     const {params} = match
     const {id} = params
+    console.log(params)
 
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
@@ -128,7 +131,7 @@ class JobItemDetails extends Component {
     } = jobDetails
 
     return (
-      <div className="job-details-container-main">
+      <div>
         <div className="job-details-container">
           <div className="role-container">
             <img src={companyLogoUrl} alt="job details company logo" />
@@ -151,7 +154,7 @@ class JobItemDetails extends Component {
                 <p> {employmentType} </p>
               </div>
             </div>
-            <h1> {packagePerAnnum} </h1>
+            <p> {packagePerAnnum} </p>
           </div>
           <hr />
           <div className="job-description-container">
@@ -168,7 +171,7 @@ class JobItemDetails extends Component {
               <h1> Skills </h1>
               <ul className="skills-container-list">
                 {skills.map(each => (
-                  <li>
+                  <li key={each.name}>
                     <img src={each.imageUrl} alt={each.name} />
                     <p> {each.name} </p>
                   </li>
@@ -185,7 +188,7 @@ class JobItemDetails extends Component {
           </div>
         </div>
         <h1> Similar Jobs </h1>
-        <ul>
+        <ul className="similar-jobs">
           {similarJobsData.map(eachJobs => (
             <SimilarJobDetails cardDetails={eachJobs} key={eachJobs.id} />
           ))}
@@ -213,7 +216,7 @@ class JobItemDetails extends Component {
     return (
       <>
         <Header />
-        <div className="job-details-section">{this.renderTheDetails()}</div>
+        <div className="job-details-section"> {this.renderTheDetails()}</div>
       </>
     )
   }

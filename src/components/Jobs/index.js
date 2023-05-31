@@ -30,7 +30,6 @@ class Jobs extends Component {
   }
 
   getAllJobs = async () => {
-    console.log('in it')
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
@@ -118,7 +117,13 @@ class Jobs extends Component {
           onChange={this.changeSearchInput}
           onKeyDown={this.onEnterSearchInput}
         />
-        <BsSearch className="search-icon" />
+        <button
+          data-testid="searchButton"
+          onClick={this.getAllJobs}
+          className="search-button-style"
+        >
+          <BsSearch className="search-icon" />
+        </button>
       </div>
     )
   }
@@ -192,12 +197,18 @@ class Jobs extends Component {
   render() {
     const {activeEmploymentType, searchInput, activeSalaryRange} = this.state
     const {employmentTypesList, salaryRangesList} = this.props
-    console.log('rendering')
+    console.log(this.props)
 
     return (
       <>
         <Header />
-        <div className="all-products-section">{this.renderAllJobs()}</div>
+        <div className="all-products-section">
+          <FilterGroup
+            employmentTypesList={employmentTypesList}
+            changeEmploymentType={this.changeEmploymentType}
+          />
+          {this.renderAllJobs()}
+        </div>
       </>
     )
   }

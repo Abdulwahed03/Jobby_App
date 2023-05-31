@@ -6,3 +6,35 @@
   padding: 20px;
   cursor: pointer;
 }
+
+.role-container {
+  display: flex;
+}
+
+.job-card-logo {
+  width: 120px;
+}
+
+.jobCard-star-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.jobCard-title-container {
+  margin-left: 10px;
+}
+
+.package-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+p {
+  color: #ffffff;
+}
