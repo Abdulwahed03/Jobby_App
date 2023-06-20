@@ -21,7 +21,7 @@ class Jobs extends Component {
     jobsList: [],
     apiStatus: apiStatusConstants.initial,
     searchInput: '',
-    activeEmploymentType: ['FULLTIME', 'PARTTIME'],
+    activeEmploymentType: ['FULLTIME', 'PARTTIME', 'INTERNSHIP', 'FREELANCE'],
     activeSalaryRange: '1000000',
   }
 
@@ -175,17 +175,22 @@ class Jobs extends Component {
     const {activeEmploymentType} = this.state
 
     if (checkEl) {
-      if (!activeEmploymentType.includes(activeEmploymentTypeValue)) {
+      if (activeEmploymentType.length < 4) {
         const unpackedList = [...activeEmploymentType]
         unpackedList.push(activeEmploymentTypeValue)
-        this.setState({activeEmploymentType: unpackedList}, this.getProducts)
+        console.log(unpackedList)
+        this.setState({activeEmploymentType: unpackedList}, this.getAllJobs)
+      } else if (activeEmploymentType.length === 4) {
+        const unpackedList = [activeEmploymentTypeValue]
+        this.setState({activeEmploymentType: unpackedList}, this.getAllJobs)
       }
     } else if (checkEl === false) {
       if (activeEmploymentType.includes(activeEmploymentTypeValue)) {
         const ind = activeEmploymentType.indexOf(activeEmploymentTypeValue)
         const unpackedList = [...activeEmploymentType]
         unpackedList.splice(ind, 1)
-        this.setState({activeEmploymentType: unpackedList}, this.getProducts)
+        console.log(unpackedList)
+        this.setState({activeEmploymentType: unpackedList}, this.getAllJobs)
       }
     }
   }
@@ -196,17 +201,12 @@ class Jobs extends Component {
 
   render() {
     const {activeEmploymentType, searchInput, activeSalaryRange} = this.state
-    const {employmentTypesList, salaryRangesList} = this.props
-    console.log(this.props)
 
     return (
       <>
         <Header />
         <div className="all-products-section">
-          <FilterGroup
-            employmentTypesList={employmentTypesList}
-            changeEmploymentType={this.changeEmploymentType}
-          />
+          <FilterGroup changeEmploymentType={this.changeEmploymentType} />
           {this.renderAllJobs()}
         </div>
       </>

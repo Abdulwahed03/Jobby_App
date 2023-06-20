@@ -1,3 +1,4 @@
+import {Component} from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
 
 import LoginPage from './components/LoginPage'
@@ -8,6 +9,7 @@ import NotFound from './components/NotFound'
 
 import './App.css'
 import JobItemDetails from './components/JobItemDetails'
+import JobbyContext from './context/JobbyContext'
 
 // These are the lists used in the application. You can move them to any component needed.
 const employmentTypesList = [
@@ -48,21 +50,38 @@ const salaryRangesList = [
   },
 ]
 
-const App = () => (
-  <Switch>
-    <Route exact path="/login" component={LoginPage} />
-    <ProtectedRoute exact path="/" component={Home} />
-    <ProtectedRoute
-      exact
-      path="/jobs"
-      component={Jobs}
-      salaryRangesList={salaryRangesList}
-      employmentTypesList={employmentTypesList}
-    />
-    <ProtectedRoute exact path="/jobs/:id" component={JobItemDetails} />
-    <Route path="/not-found" component={NotFound} />
-    <Redirect to="not-found" />
-  </Switch>
-)
+class App extends Component {
+  state = {
+    initialEmploymentTypesList: employmentTypesList,
+    initialSalaryRangesList: salaryRangesList,
+  }
+
+  render() {
+    const {initialEmploymentTypesList, initialSalaryRangesList} = this.state
+    return (
+      <JobbyContext.Provider
+        value={{
+          initialEmploymentTypesList,
+          initialSalaryRangesList,
+        }}
+      >
+        <Switch>
+          <Route exact path="/login" component={LoginPage} />
+          <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute
+            exact
+            path="/jobs"
+            component={Jobs}
+            salaryRangesList={salaryRangesList}
+            employmentTypesList={employmentTypesList}
+          />
+          <ProtectedRoute exact path="/jobs/:id" component={JobItemDetails} />
+          <Route path="/not-found" component={NotFound} />
+          <Redirect to="not-found" />
+        </Switch>
+      </JobbyContext.Provider>
+    )
+  }
+}
 
 export default App

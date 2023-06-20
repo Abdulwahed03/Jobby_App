@@ -2,6 +2,7 @@ import {Component} from 'react'
 import {BsSearch} from 'react-icons/bs'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
+import JobbyContext from '../../context/JobbyContext'
 
 import './index.css'
 
@@ -44,17 +45,49 @@ class FilterGroup extends Component {
         userProfileData: updatedData,
         apiStatus: apiStatusConstants.success,
       })
-      console.log(updatedData)
     } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
 
-  renderEmployeeList = props => {
-    const {employmentTypesList} = this.props
+  renderEmployeeList = () => (
+    <JobbyContext.Consumer>
+      {value => {
+        const {initialEmploymentTypesList} = value
 
-    return <h1> Hello </h1>
-  }
+        return initialEmploymentTypesList.map(employment => {
+          const {changeEmploymentType} = this.props
+
+          const checkedTheInput = event => {
+            let CheckedEl = false
+            if (event.target.checked) {
+              CheckedEl = true
+              changeEmploymentType(CheckedEl, employment.employmentTypeId)
+            } else {
+              CheckedEl = false
+              changeEmploymentType(CheckedEl, employment.employmentTypeId)
+            }
+          }
+
+          return (
+            <li
+              className="employment-type-item"
+              key={employment.employmentTypeId}
+            >
+              <input
+                type="checkbox"
+                id={employment.employmentTypeId}
+                onChange={checkedTheInput}
+              />
+              <label htmlFor={employment.employmentTypeId}>
+                {employment.label}
+              </label>
+            </li>
+          )
+        })
+      }}
+    </JobbyContext.Consumer>
+  )
 
   renderEmploymentCategories = () => (
     <>

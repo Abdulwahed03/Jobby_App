@@ -23,3 +23,7 @@
 .profile-logo {
   width: 60px;
 }
+
+.categories-list {
+  list-style-type: none;
+}
