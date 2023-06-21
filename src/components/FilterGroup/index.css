@@ -27,3 +27,25 @@
 .categories-list {
   list-style-type: none;
 }
+
+.salary-type-item {
+  list-style-type: none;
+  margin-bottom: 6px;
+}
+
+.employment-type-item {
+  list-style-type: none;
+  margin-bottom: 6px;
+}
+
+.employment-type-label {
+  font-family: 'Roboto';
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.salary-data {
+  font-family: 'Roboto';
+  font-size: 14px;
+  color: #ffffff;
+}

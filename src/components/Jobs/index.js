@@ -121,6 +121,7 @@ class Jobs extends Component {
           data-testid="searchButton"
           onClick={this.getAllJobs}
           className="search-button-style"
+          type="button"
         >
           <BsSearch className="search-icon" />
         </button>
@@ -185,7 +186,10 @@ class Jobs extends Component {
         this.setState({activeEmploymentType: unpackedList}, this.getAllJobs)
       }
     } else if (checkEl === false) {
-      if (activeEmploymentType.includes(activeEmploymentTypeValue)) {
+      if (activeEmploymentType.length === 1) {
+        const unpackedList = ['FULLTIME', 'PARTTIME', 'INTERNSHIP', 'FREELANCE']
+        this.setState({activeEmploymentType: unpackedList}, this.getAllJobs)
+      } else if (activeEmploymentType.length <= 4) {
         const ind = activeEmploymentType.indexOf(activeEmploymentTypeValue)
         const unpackedList = [...activeEmploymentType]
         unpackedList.splice(ind, 1)
@@ -195,18 +199,20 @@ class Jobs extends Component {
     }
   }
 
-  changeSalaryRange = activeSalaryRange => {
-    this.setState({activeSalaryRange}, this.getProducts)
+  changeSalaryRange = activeSalaryRangeData => {
+    console.log('Triggered')
+    this.setState({activeSalaryRange: activeSalaryRangeData}, this.getAllJobs)
   }
 
   render() {
-    const {activeEmploymentType, searchInput, activeSalaryRange} = this.state
-
     return (
       <>
         <Header />
         <div className="all-products-section">
-          <FilterGroup changeEmploymentType={this.changeEmploymentType} />
+          <FilterGroup
+            changeEmploymentType={this.changeEmploymentType}
+            changeSalaryRange={this.changeSalaryRange}
+          />
           {this.renderAllJobs()}
         </div>
       </>

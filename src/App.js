@@ -54,15 +54,26 @@ class App extends Component {
   state = {
     initialEmploymentTypesList: employmentTypesList,
     initialSalaryRangesList: salaryRangesList,
+    jobTitle: '',
+  }
+
+  updatingTheTitle = title => {
+    this.setState({jobTitle: title})
+    console.log(title)
   }
 
   render() {
-    const {initialEmploymentTypesList, initialSalaryRangesList} = this.state
+    const {
+      initialEmploymentTypesList,
+      initialSalaryRangesList,
+      updatingTheTitle,
+    } = this.state
     return (
       <JobbyContext.Provider
         value={{
           initialEmploymentTypesList,
           initialSalaryRangesList,
+          updatingTheTitle: this.updatingTheTitle,
         }}
       >
         <Switch>

@@ -6,6 +6,7 @@ import {AiFillStar} from 'react-icons/ai'
 import {MdLocationOn} from 'react-icons/md'
 import {BsFillBriefcaseFill} from 'react-icons/bs'
 import Header from '../Header'
+import JobbyContext from '../../context/JobbyContext'
 import SimilarJobDetails from '../SimilarJobDetails'
 
 import './index.css'
@@ -115,87 +116,94 @@ class JobItemDetails extends Component {
     </div>
   )
 
-  renderJobDetails = () => {
-    const {jobDetails, similarJobsData} = this.state
-    const {
-      companyLogoUrl,
-      companyWebsiteUrl,
-      employmentType,
-      id,
-      jobDescription,
-      skills,
-      lifeAtCompany,
-      location,
-      packagePerAnnum,
-      rating,
-    } = jobDetails
+  renderJobDetails = () => (
+    <JobbyContext.Consumer>
+      {value => {
+        const {jobDetails, similarJobsData} = this.state
+        const {jobTitle} = value
+        const {
+          companyLogoUrl,
+          companyWebsiteUrl,
+          employmentType,
+          id,
+          jobDescription,
+          skills,
+          lifeAtCompany,
+          location,
+          packagePerAnnum,
+          rating,
+        } = jobDetails
 
-    return (
-      <div>
-        <div className="job-details-container">
-          <div className="role-container">
-            <img src={companyLogoUrl} alt="job details company logo" />
-            <div>
-              <h1> Title </h1>
-              <div>
-                <AiFillStar />
-                <p> {rating} </p>
+        console.log(value)
+
+        return (
+          <div>
+            <div className="job-details-container">
+              <div className="role-container">
+                <img src={companyLogoUrl} alt="job details company logo" />
+                <div>
+                  <h1> {jobTitle} </h1>
+                  <div>
+                    <AiFillStar />
+                    <p> {rating} </p>
+                  </div>
+                </div>
+              </div>
+              <div className="package-container">
+                <div>
+                  <div>
+                    <MdLocationOn />
+                    <p> {location} </p>
+                  </div>
+                  <div>
+                    <BsFillBriefcaseFill />
+                    <p> {employmentType} </p>
+                  </div>
+                </div>
+                <p> {packagePerAnnum} </p>
+              </div>
+              <hr />
+              <div className="job-description-container">
+                <div className="description-container">
+                  <div>
+                    <h1> Description </h1>
+                    <a href={companyWebsiteUrl}>
+                      Visit <HiExternalLink />
+                    </a>
+                  </div>
+                  <p> {jobDescription} </p>
+                </div>
+                <div className="skills-container">
+                  <h1> Skills </h1>
+                  <ul className="skills-container-list">
+                    {skills.map(each => (
+                      <li key={each.name}>
+                        <img src={each.imageUrl} alt={each.name} />
+                        <p> {each.name} </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="life-at-company-container">
+                  <h1> Life at Company </h1>
+                  <div>
+                    <p> {lifeAtCompany.description} </p>
+                    <img src={lifeAtCompany.imageUrl} alt="life at company" />
+                  </div>
+                </div>
               </div>
             </div>
+            <h1> Similar Jobs </h1>
+            <ul className="similar-jobs">
+              {similarJobsData.map(eachJobs => (
+                <SimilarJobDetails cardDetails={eachJobs} key={eachJobs.id} />
+              ))}
+            </ul>
           </div>
-          <div className="package-container">
-            <div>
-              <div>
-                <MdLocationOn />
-                <p> {location} </p>
-              </div>
-              <div>
-                <BsFillBriefcaseFill />
-                <p> {employmentType} </p>
-              </div>
-            </div>
-            <p> {packagePerAnnum} </p>
-          </div>
-          <hr />
-          <div className="job-description-container">
-            <div className="description-container">
-              <div>
-                <h1> Description </h1>
-                <a href={companyWebsiteUrl}>
-                  Visit <HiExternalLink />
-                </a>
-              </div>
-              <p> {jobDescription} </p>
-            </div>
-            <div className="skills-container">
-              <h1> Skills </h1>
-              <ul className="skills-container-list">
-                {skills.map(each => (
-                  <li key={each.name}>
-                    <img src={each.imageUrl} alt={each.name} />
-                    <p> {each.name} </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="life-at-company-container">
-              <h1> Life at Company </h1>
-              <div>
-                <p> {lifeAtCompany.description} </p>
-                <img src={lifeAtCompany.imageUrl} alt="life at company" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <h1> Similar Jobs </h1>
-        <ul className="similar-jobs">
-          {similarJobsData.map(eachJobs => (
-            <SimilarJobDetails cardDetails={eachJobs} key={eachJobs.id} />
-          ))}
-        </ul>
-      </div>
-    )
-  }
+        )
+      }}
+    </JobbyContext.Consumer>
+  )
 
   renderTheDetails = () => {
     const {apiStatus} = this.state

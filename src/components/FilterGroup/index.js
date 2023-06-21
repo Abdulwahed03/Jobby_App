@@ -50,6 +50,47 @@ class FilterGroup extends Component {
     }
   }
 
+  renderSalaryFiltersList = () => (
+    <JobbyContext.Consumer>
+      {value => {
+        const {initialSalaryRangesList} = value
+
+        return initialSalaryRangesList.map(salary => {
+          const {changeSalaryRange} = this.props
+
+          const checkedTheSalaryInput = event => {
+            console.log(typeof salary.salaryRangeId)
+            if (event.target.checked) {
+              changeSalaryRange(salary.salaryRangeId)
+            }
+          }
+
+          return (
+            <li className="salary-type-item" key={salary.salaryRangeId}>
+              <input
+                type="radio"
+                name="salary"
+                value={salary.label}
+                id={salary.salaryRangeId}
+                onClick={checkedTheSalaryInput}
+              />
+              <label htmlFor={salary.salaryRangeId} className="salary-data">
+                {salary.label}
+              </label>
+            </li>
+          )
+        })
+      }}
+    </JobbyContext.Consumer>
+  )
+
+  renderRatingsFilters = () => (
+    <div>
+      <h1 className="rating-heading"> Salary Range </h1>
+      <ul className="ratings-list">{this.renderSalaryFiltersList()}</ul>
+    </div>
+  )
+
   renderEmployeeList = () => (
     <JobbyContext.Consumer>
       {value => {
@@ -79,7 +120,10 @@ class FilterGroup extends Component {
                 id={employment.employmentTypeId}
                 onChange={checkedTheInput}
               />
-              <label htmlFor={employment.employmentTypeId}>
+              <label
+                htmlFor={employment.employmentTypeId}
+                className="employment-type-label"
+              >
                 {employment.label}
               </label>
             </li>
@@ -103,7 +147,7 @@ class FilterGroup extends Component {
       <div className="profile-background">
         <img
           src={userProfileData.profileImageUrl}
-          alt={userProfileData.name}
+          alt="profile"
           className="profile-logo"
         />
         <h1 className="profile-user-name"> {userProfileData.name} </h1>
@@ -114,7 +158,9 @@ class FilterGroup extends Component {
 
   userProfileDataFailure = () => (
     <div className="failure-details">
-      <button type="button"> Retry </button>
+      <button type="button" onClick={this.renderProfileDetails}>
+        Retry
+      </button>
     </div>
   )
 
@@ -143,7 +189,10 @@ class FilterGroup extends Component {
     return (
       <div className="filters-group-container">
         {this.renderingTheCondition()}
+        <hr />
         {this.renderEmploymentCategories()}
+        <hr />
+        {this.renderRatingsFilters()}
       </div>
     )
   }
