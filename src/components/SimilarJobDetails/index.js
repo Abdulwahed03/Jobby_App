@@ -14,6 +14,8 @@ const SimilarJobDetails = props => {
     title,
   } = cardDetails
 
+  console.log(cardDetails)
+
   return (
     <li>
       <div className="Similar-role-container">

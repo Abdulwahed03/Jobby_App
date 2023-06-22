@@ -179,7 +179,6 @@ class Jobs extends Component {
       if (activeEmploymentType.length < 4) {
         const unpackedList = [...activeEmploymentType]
         unpackedList.push(activeEmploymentTypeValue)
-        console.log(unpackedList)
         this.setState({activeEmploymentType: unpackedList}, this.getAllJobs)
       } else if (activeEmploymentType.length === 4) {
         const unpackedList = [activeEmploymentTypeValue]
@@ -193,14 +192,12 @@ class Jobs extends Component {
         const ind = activeEmploymentType.indexOf(activeEmploymentTypeValue)
         const unpackedList = [...activeEmploymentType]
         unpackedList.splice(ind, 1)
-        console.log(unpackedList)
         this.setState({activeEmploymentType: unpackedList}, this.getAllJobs)
       }
     }
   }
 
   changeSalaryRange = activeSalaryRangeData => {
-    console.log('Triggered')
     this.setState({activeSalaryRange: activeSalaryRangeData}, this.getAllJobs)
   }
 

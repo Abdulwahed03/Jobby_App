@@ -30,7 +30,7 @@ class JobItemDetails extends Component {
   }
 
   gettingSimilarJobDetails = each => ({
-    companyLogoUrl: each.companyLogoUrl,
+    companyLogoUrl: each.company_logo_url,
     employmentType: each.employment_type,
     id: each.id,
     jobDescription: each.job_description,
@@ -134,7 +134,7 @@ class JobItemDetails extends Component {
           rating,
         } = jobDetails
 
-        console.log(value)
+        console.log(similarJobsData)
 
         return (
           <div>

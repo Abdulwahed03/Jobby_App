@@ -52,9 +52,9 @@ const salaryRangesList = [
 
 class App extends Component {
   state = {
+    jobTitle: '',
     initialEmploymentTypesList: employmentTypesList,
     initialSalaryRangesList: salaryRangesList,
-    jobTitle: '',
   }
 
   updatingTheTitle = title => {
@@ -67,12 +67,14 @@ class App extends Component {
       initialEmploymentTypesList,
       initialSalaryRangesList,
       updatingTheTitle,
+      jobTitle,
     } = this.state
     return (
       <JobbyContext.Provider
         value={{
           initialEmploymentTypesList,
           initialSalaryRangesList,
+          jobTitle,
           updatingTheTitle: this.updatingTheTitle,
         }}
       >
