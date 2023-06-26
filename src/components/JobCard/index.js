@@ -34,31 +34,31 @@ const JobCard = props => (
                 alt="company logo"
                 className="job-card-logo"
               />
-              <div className="jobCard-title-container">
-                <h1> {title} </h1>
+              <div className="job-card-title-container">
+                <h1 className="main-title-heading"> {title} </h1>
                 <div className="jobCard-star-container">
-                  <AiFillStar />
-                  <p> {rating} </p>
+                  <AiFillStar className="star" />
+                  <p className="main-title-para"> {rating} </p>
                 </div>
               </div>
             </div>
             <div className="package-container">
-              <div className="role-container">
-                <div className="role-container">
-                  <MdLocationOn />
-                  <p> {location} </p>
+              <div className="role-sub-container">
+                <div className="role-logo-container">
+                  <MdLocationOn className="small-icons" />
+                  <p className="main-title-para"> {location} </p>
                 </div>
-                <div className="role-container">
-                  <BsFillBriefcaseFill />
-                  <p> {employmentType} </p>
+                <div className="role-logo-container">
+                  <BsFillBriefcaseFill className="small-icons" />
+                  <p className="main-title-para"> {employmentType} </p>
                 </div>
               </div>
-              <h1> {packagePerAnnum} </h1>
+              <h1 className="main-title-heading-package">{packagePerAnnum}</h1>
             </div>
-            <hr />
+            <hr className="card-line" />
             <div className="job-description-container">
-              <h1> Description </h1>
-              <p> {jobDescription} </p>
+              <h1 className="main-title-heading"> Description </h1>
+              <p className="main-title-para"> {jobDescription} </p>
             </div>
           </Link>
         </li>

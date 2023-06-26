@@ -59,7 +59,6 @@ class FilterGroup extends Component {
           const {changeSalaryRange} = this.props
 
           const checkedTheSalaryInput = event => {
-            console.log(typeof salary.salaryRangeId)
             if (event.target.checked) {
               changeSalaryRange(salary.salaryRangeId)
             }
@@ -189,9 +188,9 @@ class FilterGroup extends Component {
     return (
       <div className="filters-group-container">
         {this.renderingTheCondition()}
-        <hr />
+        <hr className="the-line" />
         {this.renderEmploymentCategories()}
-        <hr />
+        <hr className="the-line" />
         {this.renderRatingsFilters()}
       </div>
     )

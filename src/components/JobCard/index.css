@@ -1,18 +1,42 @@
 .job-card-each {
-  background-color: #2c364c;
+  background-color: #475569;
   border-radius: 12px;
   border: 0px;
-  margin: 10px 0px;
+  margin: 14px 0px;
   padding: 20px;
   cursor: pointer;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .job-card-each {
+    margin: 16px 0px;
+  }
 }
 
 .role-container {
   display: flex;
 }
 
+.role-sub-container {
+  display: flex;
+}
+
+.role-logo-container {
+  display: flex;
+  margin-right: 18px;
+}
+
 .job-card-logo {
-  width: 120px;
+  width: 50px;
+  height: 50px;
+}
+
+@media screen and (min-width: 768px) {
+  .job-card-logo {
+    width: 70px;
+    height: 70px;
+  }
 }
 
 .jobCard-star-container {
@@ -21,8 +45,9 @@
   align-items: center;
 }
 
-.jobCard-title-container {
+.job-card-title-container {
   margin-left: 10px;
+  height: 60px;
 }
 
 .package-container {
@@ -30,11 +55,67 @@
   justify-content: space-between;
 }
 
-h1 {
-  color: #ffffff;
-  font-size: 24px;
+@media screen and (min-width: 768px) {
+  .package-container {
+    margin-top: 10px;
+  }
 }
 
-p {
+.main-title-heading-package {
+  font-family: Roboto;
+  font-size: 16px;
+  margin-top: 10px;
   color: #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .main-title-heading-package {
+    font-size: 20px;
+  }
+}
+
+.main-title-heading {
+  font-family: Roboto;
+  font-size: 16px;
+  margin: 0px;
+  color: #f1f5f9;
+}
+
+@media screen and (min-width: 768px) {
+  .main-title-heading {
+    font-size: 22px;
+  }
+}
+
+.main-title-para {
+  font-family: Roboto;
+  font-size: 12px;
+  margin: 10px 0px;
+  color: #cbd5e1;
+}
+
+@media screen and (min-width: 768px) {
+  .main-title-para {
+    font-size: 16px;
+  }
+}
+
+.small-icons {
+  color: #ffffff;
+  margin: 10px 4px 10px 0px;
+}
+
+@media screen and (min-width: 768px) {
+  .small-icons {
+    margin: 10px 4px 10px 0px;
+  }
+}
+
+.star {
+  color: #fbbf24;
+  margin-right: 6px;
+}
+
+.card-line {
+  color: #cbd5e1;
 }
